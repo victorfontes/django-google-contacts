@@ -29,7 +29,10 @@ def google_import(request, gcs, cache=False):
         for entry in entries:
             for email in entry.email:
                 if email.primary:
-                    contact = '%s <%s>' % (entry.title.text, email.address)
+                    contact = {
+                        'title': entry.title.text,
+                        'email': email.address,
+                    }
                     contacts.append(contact)
         
         if cache:
